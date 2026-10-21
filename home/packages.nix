@@ -14,5 +14,6 @@
     python3
     uv
     neovim
+    fastfetch
   ];
 }

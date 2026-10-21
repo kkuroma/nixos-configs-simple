@@ -1,6 +1,6 @@
 let
   tailscalePorts = [ 22 ];
-  localPorts = [ 22 ];
+  localPorts = [ ];
 in
 {
   networking.firewall = {
