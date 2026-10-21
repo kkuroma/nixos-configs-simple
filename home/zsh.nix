@@ -25,19 +25,10 @@ in
 
   programs.zsh = {
     enable = true;
-    # zsh-autocomplete runs compinit itself
-    enableCompletion = false;
+    completionInit = "autoload -U compinit && compinit -d ~/.cache/zcompdump";
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     defaultKeymap = "emacs";
-
-    plugins = [
-      {
-        name = "zsh-autocomplete";
-        src = pkgs.zsh-autocomplete;
-        file = "share/zsh-autocomplete/zsh-autocomplete.plugin.zsh";
-      }
-    ];
 
     history = {
       size = 1000;

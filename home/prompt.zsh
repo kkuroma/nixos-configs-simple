@@ -16,16 +16,16 @@ precmd() {
         local ms=$((elapsed % 1000))
 
         if [ $return_code -eq 0 ]; then
-            local code_color="\033[32m"
+            local code_color="%F{green}"
         else
-            local code_color="\033[31m"
+            local code_color="%F{red}"
         fi
 
         if [ $elapsed -gt 1000 ]; then
             if [ $minutes -gt 0 ]; then
-                print -P "\033[34m󰁔\033[0m ${code_color}${return_code}\033[0m took ${minutes}m ${seconds}s"
+                print -P "%F{blue}>%f ${code_color}${return_code}%f took ${minutes}m ${seconds}s"
             else
-                print -P "\033[34m󰁔\033[0m ${code_color}${return_code}\033[0m took ${seconds}.$(printf "%03d" $ms)s"
+                print -P "%F{blue}>%f ${code_color}${return_code}%f took ${seconds}.$(printf "%03d" $ms)s"
             fi
         fi
 
