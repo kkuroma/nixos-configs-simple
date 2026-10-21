@@ -1,9 +1,16 @@
-{ inputs, pkgs, lib, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 let
   # generated flakes pin the same nixpkgs rev the system was built with
-  init-shell = pkgs.writeShellScriptBin "init-shell"
-    (builtins.replaceStrings [ "@NIXPKGS_REV@" ] [ inputs.nixpkgs.rev ]
-      (builtins.readFile ../scripts/init-shell.sh));
+  init-shell = pkgs.writeShellScriptBin "init-shell" (
+    builtins.replaceStrings [ "@NIXPKGS_REV@" ] [ inputs.nixpkgs.rev ] (
+      builtins.readFile ../scripts/init-shell.sh
+    )
+  );
 in
 {
   home.packages = [ init-shell ];
@@ -62,7 +69,7 @@ in
       history = "history 0";
       reload = "exec zsh";
       nix-clean = "nix-collect-garbage -d; nix-store --optimise";
-      nix-rebuild = "sudo nixos-rebuild switch --flake ~/nixos-configs-simple#nixos";
+      nix-rebuild = "sudo nixos-rebuild switch --flake ~/System/nixos-configs-simple#nixos";
       nix-update = "nix flake update --flake ~/nixos-configs-simple";
     };
 
